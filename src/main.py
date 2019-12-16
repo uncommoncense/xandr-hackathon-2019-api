@@ -1,7 +1,8 @@
 from fastapi import FastAPI
+from chatbot import MastodonBot
 
 app = FastAPI()
-
+bot = MastodonBot()
 
 @app.get("/")
 def read_root():
@@ -18,3 +19,8 @@ def analyze_text(test: str):
 def alert(user: str, status: str):
     return {"user:": {user},
             "status": {status}}
+
+
+@app.get("/test")
+def test():
+    bot.reply_to(103318542055429410)
