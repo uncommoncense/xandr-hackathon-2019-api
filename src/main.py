@@ -1,5 +1,9 @@
 from fastapi import FastAPI
 from chatbot import MastodonBot
+from dotenv import load_dotenv
+from random import random
+
+load_dotenv()
 
 app = FastAPI()
 bot = MastodonBot()
@@ -12,10 +16,10 @@ def read_root():
 @app.get("/analyze/{test}")
 def analyze_text(test: str):
     return {"input": {test},
-            "toxicity": 2.0}
+            "filter": True if random() > 0.5 else False}
 
 
-@app.get("/alert/{user}?status={status}")
+@app.get("/alert/{user}")
 def alert(user: str, status: str):
     return {"user:": {user},
             "status": {status}}
@@ -23,4 +27,4 @@ def alert(user: str, status: str):
 
 @app.get("/test")
 def test():
-    bot.reply_to(103318542055429410)
+    bot.reply_to(103318476731759999)

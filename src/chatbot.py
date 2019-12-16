@@ -16,7 +16,7 @@ class MastodonBot(object):
 
     def reply_to(self, original_status_id):
         self._mastodon.status_post(
-            status="Not cool",
+            status="@kwu wut",
             in_reply_to_id=original_status_id,
             visibility="private"
         )
