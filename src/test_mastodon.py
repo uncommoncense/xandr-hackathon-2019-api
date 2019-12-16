@@ -6,8 +6,8 @@ import os
 
 # imports access token and api base url from environment
 mastodon = Mastodon(
-	access_token=os.environ['API_TOKEN'],
-	api_base_url=os.environ['API_BASE']
+	access_token=os.environ['MASTODON_ACCESS_TOKEN'],
+	api_base_url=os.environ['MASTODON_BASE_URL']
 )
 
 mastodon.log_in(
