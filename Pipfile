@@ -6,8 +6,9 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-fastapi = "*"
-uvicorn = "*"
+fastapi = "==0.45.0"
+uvicorn = "==0.10.8"
+"Mastodon.py" = "*"
 
 [requires]
 python_version = "3.6"
