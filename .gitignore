@@ -1,2 +1,6 @@
 .idea
 __pycache__
+
+# ignore files containing environment variables
+# these files often contain sensitive information
+*.env
