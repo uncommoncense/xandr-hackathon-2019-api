@@ -2,6 +2,12 @@ import os
 from mastodon import Mastodon
 
 
+TOXIC_ALERT = (
+	"Warning! This post has been marked as toxic by the AdminBot."
+	" Consider being nicer next time."
+)
+
+
 class MastodonBot(object):
     def __init__(self):
         self._mastodon = Mastodon(
@@ -16,7 +22,7 @@ class MastodonBot(object):
 
     def reply_to(self, original_status_id):
         self._mastodon.status_post(
-            status="Not cool",
+            status=TOXIC_ALERT,
             in_reply_to_id=original_status_id,
             visibility="private"
         )
