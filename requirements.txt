@@ -2,6 +2,7 @@ fastapi==0.45.0
 uvicorn==0.10.8
 Mastodon.py==1.5.0
 python-dotenv==0.10.2
+requests==2.22.0
 pandas==0.25.3
 xlrd==1.2.0
 fastai==1.0.59

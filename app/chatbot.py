@@ -5,8 +5,8 @@ from mastodon import Mastodon
 
 
 TOXIC_ALERT = (
-    "Warning! This post has been marked as toxic by the AdminBot."
-    " Consider being nicer next time."
+    "\U000026A0 Warning! \U000026A0 \n"
+    "\nThis post has been marked as toxic by the AdminBot. Consider being nicer next time."
 )
 
 
