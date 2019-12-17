@@ -17,9 +17,10 @@ def read_root():
 
 @app.get("/analyze/{test}")
 def analyze(test: str):
+    prediction = predictionModel.predict(test)
     return {"input": test,
-            "prediction": predictionModel.predict(test),
-            "filter": True if 1 > 0.5 else False}
+            "prediction": prediction,
+            "filter": True if prediction > 0.5 else False}
 
 
 @app.get("/report/{user}/{status_id}")
