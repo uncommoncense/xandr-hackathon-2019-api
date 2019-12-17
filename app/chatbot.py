@@ -24,7 +24,7 @@ class MastodonBot(object):
         self._mastodon.status_post(
             status=TOXIC_ALERT,
             in_reply_to_id=original_status_id,
-            visibility="private"
+            visibility="direct"
         )
 
 
