@@ -12,10 +12,13 @@ class PredictionModel(object):
 
         print("Loading the model", flush=True)
         self._learn = load_learner(path=path)
+        print("Done loading the model", flush=True)
 
     def predict(self, text):
+        print(f"{text}")
         probabilities = self._learn.predict(text)
-        return probabilities
+        print(f"P(is_bullying)={probabilities[2][1]}")
+        return float(probabilities[2][1])
 
 
 if __name__ == '__main__':
