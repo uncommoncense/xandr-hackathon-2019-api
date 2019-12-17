@@ -2,12 +2,13 @@ import json
 from fastapi import FastAPI
 from chatbot import MastodonBot
 from dotenv import load_dotenv
-from random import random
+from model.predict import PredictionModel
 
 load_dotenv()
 
 app = FastAPI()
 bot = MastodonBot()
+predictionModel = PredictionModel()
 
 @app.get("/")
 def read_root():
@@ -17,7 +18,8 @@ def read_root():
 @app.get("/analyze/{test}")
 def analyze(test: str):
     return {"input": test,
-            "filter": True if random() > 0.5 else False}
+            "prediction": predictionModel.predict(test),
+            "filter": True if 1 > 0.5 else False}
 
 
 @app.get("/report/{user}/{status_id}")
