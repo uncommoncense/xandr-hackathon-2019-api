@@ -1,4 +1,5 @@
 .idea
+datasets
 __pycache__
 
 # ignore files containing environment variables
