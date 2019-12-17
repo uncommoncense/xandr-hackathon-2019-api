@@ -1,3 +1,4 @@
+import json
 from fastapi import FastAPI
 from chatbot import MastodonBot
 from dotenv import load_dotenv
@@ -10,21 +11,16 @@ bot = MastodonBot()
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World3"}
+    return {"Hello": "World"}
 
 
 @app.get("/analyze/{test}")
-def analyze_text(test: str):
-    return {"input": {test},
+def analyze(test: str):
+    return {"input": test,
             "filter": True if random() > 0.5 else False}
 
 
-@app.get("/alert/{user}")
-def alert(user: str, status: str):
-    return {"user:": {user},
-            "status": {status}}
+@app.get("/report/{user}/{status_id}")
+def report(user: str, status_id: int):
+    return bot.reply_to(user, status_id)
 
-
-@app.get("/test")
-def test():
-    bot.reply_to(103318476731759999)

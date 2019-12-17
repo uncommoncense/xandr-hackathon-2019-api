@@ -1,11 +1,20 @@
 import os
+import json
+from datetime import date,datetime
 from mastodon import Mastodon
 
 
 TOXIC_ALERT = (
-	"Warning! This post has been marked as toxic by the AdminBot."
-	" Consider being nicer next time."
+    "Warning! This post has been marked as toxic by the AdminBot."
+    " Consider being nicer next time."
 )
+
+
+class ComplexEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, (datetime, date)):
+            return obj.isoformat()
+        return json.JSONEncoder.default(self, obj)
 
 
 class MastodonBot(object):
@@ -20,12 +29,13 @@ class MastodonBot(object):
             password=os.environ['MASTODON_PASSWORD']
         )
 
-    def reply_to(self, original_status_id):
-        self._mastodon.status_post(
-            status=TOXIC_ALERT,
+    def reply_to(self, user, original_status_id):
+        return json.dumps(self._mastodon.status_post(
+            status=user + " " + TOXIC_ALERT,
             in_reply_to_id=original_status_id,
-            visibility="direct"
-        )
+            visibility="direct",
+            idempotency_key="Bot-" + str(original_status_id)
+        ), cls=ComplexEncoder)
 
 
 if __name__ == '__main__':
