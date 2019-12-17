@@ -10,7 +10,7 @@ bot = MastodonBot()
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return {"Hello": "World2"}
 
 
 @app.get("/analyze/{test}")
